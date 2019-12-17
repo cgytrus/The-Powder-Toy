@@ -984,6 +984,7 @@ void Simulation::SetEdgeMode(int newEdgeMode)
 	}
 }
 
+#ifndef RENDERER
 void Simulation::ApplyDecoration(int x, int y, int colR_, int colG_, int colB_, int colA_, int mode)
 {
 	int rp;
@@ -1333,6 +1334,7 @@ void Simulation::ApplyDecorationFill(Renderer *ren, int x, int y, int colR, int 
 	}
 	free(bitmap);
 }
+#endif
 
 int Simulation::Tool(int x, int y, int tool, int brushX, int brushY, float strength)
 {
@@ -1345,6 +1347,7 @@ int Simulation::Tool(int x, int y, int tool, int brushX, int brushY, float stren
 	return tools[tool].Perform(this, cpart, x, y, brushX, brushY, strength);
 }
 
+#ifndef RENDERER
 int Simulation::ToolBrush(int positionX, int positionY, int tool, Brush * cBrush, float strength)
 {
 	if(cBrush)
@@ -1433,6 +1436,7 @@ void Simulation::ToolBox(int x1, int y1, int x2, int y2, int tool, float strengt
 		for (i=x1; i<=x2; i++)
 			Tool(i, j, tool, brushX, brushY, strength);
 }
+#endif
 
 int Simulation::CreateWalls(int x, int y, int rx, int ry, int wall, Brush * cBrush)
 {
@@ -1624,6 +1628,7 @@ int Simulation::FloodWalls(int x, int y, int wall, int bm)
 	return 1;
 }
 
+#ifndef RENDERER
 int Simulation::CreateParts(int positionX, int positionY, int c, Brush * cBrush, int flags)
 {
 	if (flags == -1)
@@ -1753,6 +1758,7 @@ void Simulation::CreateLine(int x1, int y1, int x2, int y2, int c, Brush * cBrus
 		}
 	}
 }
+#endif
 
 int Simulation::CreatePartFlags(int x, int y, int c, int flags)
 {
@@ -1865,6 +1871,7 @@ void Simulation::CreateLine(int x1, int y1, int x2, int y2, int c)
 	}
 }
 
+#ifndef RENDERER
 void Simulation::CreateBox(int x1, int y1, int x2, int y2, int c, int flags)
 {
 	int i, j;
@@ -2010,6 +2017,7 @@ int Simulation::FloodParts(int x, int y, int fullc, int cm, int flags)
 	free(coord_stack);
 	return created_something;
 }
+#endif
 
 void Simulation::orbitalparts_get(int block1, int block2, int resblock1[], int resblock2[])
 {
